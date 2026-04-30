@@ -1,0 +1,21 @@
+# SaaS POS — Apache config
+Options -Indexes
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Block access to sensitive files
+<FilesMatch "\.(sql|md|log|sh|env)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block direct access to src/ and templates/
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(src|templates|config\.php) - [F,L]
+</IfModule>
