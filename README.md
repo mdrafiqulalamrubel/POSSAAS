@@ -57,3 +57,4 @@ a2enmod rewrite
 ## Default Login
 Email: admin@demo.com
 Password: password
+# POS_RawPHPMySQL
